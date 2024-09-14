@@ -52,7 +52,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(new Intent(SplashScreen.this,LoginScreen.class));
 
             }
-        },6000);
+        },5000);
 
     }
 }
