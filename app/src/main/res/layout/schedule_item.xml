@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/helper_color"
+    android:layout_margin="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_scheduleItem_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App Development"
+            android:textSize="25sp"
+            android:textColor="@color/primary_color_light"/>
+        <TextView
+            android:id="@+id/textView_scheduleItem_semster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sem V"
+            android:layout_alignParentRight="true"
+            android:textSize="25sp"
+            android:textColor="@color/primary_color_light"/>
+        <TextView
+            android:id="@+id/textView_scheduleItem_classroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Classroom no : 32"
+            android:layout_below="@id/textView_scheduleItem_subject"
+            android:textColor="@color/secondary_color_light"/>
+        <TextView
+            android:id="@+id/textView_scheduleItem_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10:30 - 11:30"
+            android:textSize="18sp"
+            android:layout_below="@id/textView_scheduleItem_classroom"
+            android:textColor="@color/secondary_color_light"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

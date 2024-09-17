@@ -27,6 +27,9 @@ public class SignUpScreen extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private EditText retype_password;
+    private TextView username_txtView;
+    private TextView password_txtView;
+    private TextView retype_password_txtView;
     private Button signUp;
     private SharedPreferences sharedprefs;
     private FirebaseAuth mAuth;
@@ -45,6 +48,9 @@ public class SignUpScreen extends AppCompatActivity {
         username = (EditText) findViewById(R.id.textInput_signupScreen_username);
         password = (EditText) findViewById(R.id.textInput_signupScreen_password);
         retype_password = (EditText) findViewById(R.id.textInput_signupScreen_retype_password);
+        username_txtView = (TextView) findViewById(R.id.textView_signupScreen_username);
+        password_txtView = (TextView) findViewById(R.id.textView_signupScreen_password);
+        retype_password_txtView = (TextView) findViewById(R.id.textView_signupScreen_retype_password);
         signUp = (Button) findViewById(R.id.button_signupScreen_submitBtn);
         sharedprefs = getPreferences(Context.MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
@@ -63,7 +69,7 @@ public class SignUpScreen extends AppCompatActivity {
                 }
                 if(password.getText().length()!=0 && retype_password.getText().length()!=0) {
                     if (!password.getText().toString().equals(retype_password.getText().toString())) {
-                        Toast.makeText(getApplicationContext(), "Both the passwords don't match", LENGTH_SHORT).show();
+                        retype_password_txtView.setText("Passwords doesn't match");
                     }
                     else{
                         mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString())
@@ -80,10 +86,12 @@ public class SignUpScreen extends AppCompatActivity {
                                             startActivity(intent);
                                             finish();
                                         } else {
-                                            // Account creation failed
-
                                             Log.w("createUserWithEmail:failure", task.getException());
-                                            Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                            if(task.getException().equals("com.google.firebase.auth.FirebaseAuthInvalidCredentialsException"))
+                                                username_txtView.setText("Username should be emailID");
+                                            if(task.getException().equals("com.google.firebase.auth.FirebaseAuthWeakPasswordException"))
+                                                password_txtView.setText("Password should be atleast 6 characters");
+                                            Toast.makeText(getApplicationContext(), "Authentication failed."+task.getException(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

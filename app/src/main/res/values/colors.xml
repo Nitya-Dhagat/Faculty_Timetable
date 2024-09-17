@@ -9,4 +9,5 @@
     <color name="secondary_color_dark">#D7E0F9</color>
     <color name="helper_color">#FAF7FF</color>
     <color name="dark_theme">#111111</color>
+    <color name="red">#FF0000</color>
 </resources>
