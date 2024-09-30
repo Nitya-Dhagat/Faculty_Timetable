@@ -28,12 +28,12 @@
         android:paddingLeft="20dp"
         android:paddingTop="45dp"
         android:text="Welcome, Nitya"
-        android:textSize="40dp" />
+        android:textSize="40sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_homeScreen"
         android:layout_width="match_parent"
-        android:layout_height="583dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:layout_below="@id/textView_HomeScreen_welcome"/>
 
