@@ -1,6 +1,8 @@
 package com.example.faculty_timetable;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,7 @@ public class LoginScreen extends AppCompatActivity {
     private EditText password;
     private Button signIn;
     private FirebaseAuth mAuth;
+    private SharedPreferences sharedprefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class LoginScreen extends AppCompatActivity {
         username = (EditText) findViewById(R.id.textInput_loginScreen_username);
         password = (EditText) findViewById(R.id.textInput_loginScreen_password);
         mAuth = FirebaseAuth.getInstance();
+        sharedprefs = getPreferences(Context.MODE_PRIVATE);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +60,9 @@ public class LoginScreen extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-
+//                                    SharedPreferences.Editor editor = sharedprefs.edit();
+//                                    editor.putString("username",username.getText().toString());
+//                                    editor.commit();
                                     Toast.makeText(getApplicationContext(), "Login Successfully.",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
@@ -72,7 +78,6 @@ public class LoginScreen extends AppCompatActivity {
                                 }
                             }
                         });
-
             }
         });
 
@@ -80,6 +85,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginScreen.this,SignUpScreen.class));
+                finish();
             }
         });
     }

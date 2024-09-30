@@ -2,9 +2,9 @@ package com.example.faculty_timetable;
 
 public class TimetableEntry {
     private int entryId;
-    private Teacher teacher;
-    private TimeSlot timeSlot;
-    private DayOfWeek dayOfWeek;
+    private String teacherId;
+    private int timeSlotId;
+    private int dayOfWeekId;
     private String subject;
     private String room;
     private int semester;
@@ -18,28 +18,28 @@ public class TimetableEntry {
         this.entryId = entryId;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public String getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public TimeSlot getTimeSlot() {
-        return timeSlot;
+    public int getTimeSlotId() {
+        return timeSlotId;
     }
 
-    public void setTimeSlot(TimeSlot timeSlot) {
-        this.timeSlot = timeSlot;
+    public void setTimeSlotId(int timeSlotId) {
+        this.timeSlotId = timeSlotId;
     }
 
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
+    public int getDayOfWeekId() {
+        return dayOfWeekId;
     }
 
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
+    public void setDayOfWeekId(int dayOfWeekId) {
+        this.dayOfWeekId = dayOfWeekId;
     }
 
     public String getSubject() {

@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="App Development"
-            android:textSize="25sp"
+            android:textSize="25dp"
             android:textColor="@color/primary_color_light"/>
         <TextView
             android:id="@+id/textView_scheduleItem_semster"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Sem V"
             android:layout_alignParentRight="true"
-            android:textSize="25sp"
+            android:textSize="25dp"
             android:textColor="@color/primary_color_light"/>
 
         <ImageButton
@@ -43,15 +43,29 @@
             android:id="@+id/textView_scheduleItem_classroom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Classroom no : 32"
             android:layout_below="@id/textView_scheduleItem_subject"
             android:textColor="@color/secondary_color_light"/>
+
+        <TextView
+            android:id="@+id/textView_scheduleItem_divison"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="H4"
+            android:textSize="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/textView_scheduleItem_semster"
+            android:textColor="@color/secondary_color_light"/>
+
         <TextView
             android:id="@+id/textView_scheduleItem_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10:30 - 11:30"
-            android:textSize="18sp"
+            android:layout_marginTop="2dp"
+            android:textSize="18dp"
             android:layout_below="@id/textView_scheduleItem_classroom"
             android:textColor="@color/secondary_color_light"/>
     </RelativeLayout>

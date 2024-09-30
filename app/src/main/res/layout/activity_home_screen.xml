@@ -6,23 +6,35 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="2dp"
     tools:context=".HomeScreen">
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:text="@string/logout"
+        android:layout_alignParentRight="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_below="@+id/textView_HomeScreen_welcome"/>
+
+    <TextView
+        android:id="@id/textView_HomeScreen_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:textColor="@color/primary_color_light"
+        android:paddingLeft="20dp"
+        android:paddingTop="45dp"
+        android:text="Welcome, Nitya"
+        android:textSize="40dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_homeScreen"
         android:layout_width="match_parent"
         android:layout_height="583dp"
-        android:layout_marginTop="45dp"
-        android:layout_below="@id/button"/>
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/textView_HomeScreen_welcome"/>
 
 </RelativeLayout>

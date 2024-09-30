@@ -11,10 +11,12 @@ public class TimetableEntryViewHolder extends RecyclerView.ViewHolder {
     TextView textViewScheduleItemSemester;
     TextView textViewScheduleItemClassroom;
     TextView textViewScheduleItemTime;
+    TextView textViewScheduleItemDivison;
 
     public TimetableEntryViewHolder(View itemView) {
         super(itemView);
 
+        textViewScheduleItemDivison = itemView.findViewById(R.id.textView_scheduleItem_divison);
         textViewScheduleItemSubject = itemView.findViewById(R.id.textView_scheduleItem_subject);
         textViewScheduleItemSemester = itemView.findViewById(R.id.textView_scheduleItem_semster);
         textViewScheduleItemClassroom = itemView.findViewById(R.id.textView_scheduleItem_classroom);

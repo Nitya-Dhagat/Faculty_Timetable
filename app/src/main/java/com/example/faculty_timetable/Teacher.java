@@ -1,7 +1,7 @@
 package com.example.faculty_timetable;
 
 public class Teacher {
-    private int teacherId;
+    private String teacherId;
     private String name;
     private String department;
     private String role;
@@ -9,11 +9,11 @@ public class Teacher {
     private int experience;
     private int teachingLoad;
 
-    public int getTeacherId() {
+    public String getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(int teacherId) {
+    public void setTeacherId(String teacherId) {
         this.teacherId = teacherId;
     }
 

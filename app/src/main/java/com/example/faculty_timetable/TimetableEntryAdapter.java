@@ -1,5 +1,8 @@
 package com.example.faculty_timetable;
 
+
+import static com.example.faculty_timetable.retrieveDetails.retrieveTimeSlot;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,14 +39,14 @@ public class TimetableEntryAdapter extends RecyclerView.Adapter<TimetableEntryVi
     public void onBindViewHolder(TimetableEntryViewHolder holder, int position) {
         TimetableEntry entry = timetableEntries.get(position);
         holder.textViewScheduleItemSubject.setText(entry.getSubject());
-        holder.textViewScheduleItemSemester.setText(entry.getSemester());
+        String sem = String.valueOf(entry.getSemester());
+        holder.textViewScheduleItemSemester.setText("Sem "+sem);
+        holder.textViewScheduleItemDivison.setText(entry.getDivision());
         holder.textViewScheduleItemClassroom.setText(entry.getRoom());
-        holder.textViewScheduleItemTime.setText(entry.getTimeSlot().getStartTime() + "-" + entry.getTimeSlot().getEndTime());
-//        holder.textViewScheduleItemSubject.setText("App Development");
-//        holder.textViewScheduleItemSemester.setText("Sem V");
-//        holder.textViewScheduleItemClassroom.setText("Classroom no. 32");
-//        holder.textViewScheduleItemTime.setText("10.30 - 11.30");
-    }
+        //holder.textViewScheduleItemTime.setText(entry.getTimeSlot().getStartTime() + "-" + entry.getTimeSlot().getEndTime());
+        holder.textViewScheduleItemTime.setText(retrieveTimeSlot(context, entry.getTimeSlotId()));
+        System.out.println("timeslot = "+retrieveTimeSlot(context, entry.getTimeSlotId())+"id = "+entry.getEntryId());
+}
 
     @Override
     public int getItemCount() {

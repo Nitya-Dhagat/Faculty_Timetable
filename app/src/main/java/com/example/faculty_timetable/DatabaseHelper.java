@@ -3,6 +3,7 @@ package com.example.faculty_timetable;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -20,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TIMETABLE_ENTRIES_TABLE = "CREATE TABLE IF NOT EXISTS TimetableEntries (" +
                 "entry_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "teacher_id INTEGER REFERENCES Teachers(teacher_id)," +
+                "teacher_id TEXT REFERENCES Teachers(teacher_id)," +
                 "timeslot_id INTEGER REFERENCES TimeSlots(timeslot_id)," +
                 "day_id INTEGER REFERENCES DaysOfWeek(day_id)," +
                 "subject TEXT," +
@@ -29,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "division TEXT)";
 
         String CREATE_TEACHERS_TABLE = "CREATE TABLE IF NOT EXISTS Teachers (" +
-                "teacher_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "teacher_id TEXT PRIMARY KEY ," +
                 "name TEXT," +
                 "department TEXT," +
                 "role TEXT," +
@@ -54,43 +55,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Handle database schema changes if necessary
+        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
+        onCreate(db);
+    }
+
+    public long insertFaculty(Teacher teacher){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues faculty = new ContentValues();
+        faculty.put("teacher_id",teacher.getTeacherId());
+        faculty.put("name",teacher.getName());
+        faculty.put("department",teacher.getDepartment());
+        faculty.put("role",teacher.getRole());
+        faculty.put("qualifications",teacher.getQualifications());
+        faculty.put("experience",teacher.getExperience());
+        faculty.put("teaching_load",teacher.getTeachingLoad());
+        long newRowId = db.insert("Teachers",null,faculty);
+        db.close();
+        return newRowId;
+    }
+
+    public long insertTimeslots(TimeSlot timeslot){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues slots = new ContentValues();
+        slots.put("timeslot_Id",timeslot.getTimeSlotId());
+        slots.put("start_time",timeslot.getStartTime());
+        slots.put("end_time",timeslot.getEndTime());
+        long newRowId = db.insert("TimeSlots",null,slots);
+        db.close();
+        return newRowId;
+    }
+
+    public long insertDay(DayOfWeek dow){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues days = new ContentValues();
+        days.put("day_id",dow.getDayId());
+        days.put("day_name",dow.getDayName());
+        long newRowId = db.insert("DaysOfWeek",null,days);
+        db.close();
+        return newRowId;
     }
 
     public long insertTimetableEntry(TimetableEntry entry) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues faculty_values = new ContentValues();
-        faculty_values.put("teacher_id", entry.getTeacher().getTeacherId());
-        faculty_values.put("name",entry.getTeacher().getName());
-        faculty_values.put("department",entry.getTeacher().getDepartment());
-        faculty_values.put("role",entry.getTeacher().getRole());
-        faculty_values.put("qualifications",entry.getTeacher().getQualifications());
-        faculty_values.put("experience",entry.getTeacher().getExperience());
-        faculty_values.put("teaching_load",entry.getTeacher().getTeachingLoad());
-        long newRowId = db.insert("Teachers", null, faculty_values);
+        faculty_values.put("entry_id",entry.getEntryId());
+        faculty_values.put("teacher_id", entry.getTeacherId());
+        faculty_values.put("timeslot_id",entry.getTimeSlotId());
+        faculty_values.put("day_id",entry.getDayOfWeekId());
+        faculty_values.put("subject",entry.getSubject());
+        faculty_values.put("room",entry.getRoom());
+        faculty_values.put("semester",entry.getSemester());
+        faculty_values.put("division",entry.getDivision());
+        long newRowId = db.insert("TimetableEntries", null, faculty_values);
 
-        ContentValues timeslot_values = new ContentValues();
-        timeslot_values.put("timeslot_id", entry.getTimeSlot().getTimeSlotId());
-        timeslot_values.put("start_time", entry.getTimeSlot().getTimeSlotId());
-        timeslot_values.put("end_time", entry.getTimeSlot().getTimeSlotId());
-        newRowId = db.insert("TimeSlots", null, timeslot_values);
-
-
-        ContentValues days_values = new ContentValues();
-        days_values.put("day_id",entry.getDayOfWeek().getDayId());
-        days_values.put("day_name",entry.getDayOfWeek().getDayName());
-        newRowId = db.insert("DaysOfWeek", null, days_values);
-
-        ContentValues values = new ContentValues();
-        values.put("entry_id",entry.getEntryId());
-        values.put("teacher_id", entry.getTeacher().getTeacherId());
-        values.put("timeslot_id", entry.getTimeSlot().getTimeSlotId());
-        values.put("day_id", entry.getDayOfWeek().getDayId());
-        values.put("subject", entry.getSubject());
-        values.put("room", entry.getRoom());
-        values.put("semester", entry.getSemester());
-        values.put("division", entry.getDivision());
-        newRowId = db.insert("TimetableEntries", null, values);
         db.close();
 
         return newRowId;
