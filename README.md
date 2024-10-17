@@ -23,7 +23,8 @@ Faculty Timetable is an Android-based application designed to help educators man
 ## Technologies Used
 
 - Android SDK
-- Java/Kotlin
+- Java
+- Gradle
 - SQLite for local storage
 - Firebase (for authentication)
 
@@ -31,4 +32,4 @@ Faculty Timetable is an Android-based application designed to help educators man
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/faculty-timetable.git
+   git clone https://github.com/Nitya-Dhagat/faculty-timetable.git
