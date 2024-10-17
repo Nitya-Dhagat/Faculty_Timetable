@@ -4,15 +4,70 @@ import androidx.annotation.NonNull;
 
 public class loadEntries {
 
+    private static Teacher teacher;
+    private static DayOfWeek dayOfWeek;
+    private static TimeSlot timeSlot;
+    private static TimetableEntry entry;
+
     public static void loadTimetableEntries(@NonNull DatabaseHelper dbHelper) {
+        loadData(dbHelper);
         loadVD(dbHelper);
     }
 
+    public static void loadData(DatabaseHelper dbHelper){
+        dayOfWeek = new DayOfWeek();
+        dayOfWeek.setDayName("Monday");
+        dbHelper.insertDay(dayOfWeek);
+        dayOfWeek.setDayName("Tuesday");
+        dbHelper.insertDay(dayOfWeek);
+        dayOfWeek.setDayName("Wednesday");
+        dbHelper.insertDay(dayOfWeek);
+        dayOfWeek.setDayName("Thrusday");
+        dbHelper.insertDay(dayOfWeek);
+        dayOfWeek.setDayName("Friday");
+        dbHelper.insertDay(dayOfWeek);
+        dayOfWeek.setDayName("Saturday");
+        dbHelper.insertDay(dayOfWeek);
+
+        timeSlot = new TimeSlot();
+        timeSlot.setStartTime("8:30");
+        timeSlot.setEndTime("9:30");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("9:30");
+        timeSlot.setEndTime("10:30");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("10:45");
+        timeSlot.setEndTime("11:45");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("11:45");
+        timeSlot.setEndTime("12:45");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("12:45");
+        timeSlot.setEndTime("1:30");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("1:30");
+        timeSlot.setEndTime("2:30");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("2:30");
+        timeSlot.setEndTime("3:30");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("3:30");
+        timeSlot.setEndTime("4:30");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("4:30");
+        timeSlot.setEndTime("5:30");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("8:30");
+        timeSlot.setEndTime("11:45");
+        dbHelper.insertTimeslots(timeSlot);
+        timeSlot.setStartTime("1:30");
+        timeSlot.setEndTime("3:30");
+        dbHelper.insertTimeslots(timeSlot);
+    }
+
     public static void loadVD(DatabaseHelper dbHelper){
-        Teacher teacher = new Teacher();
-        DayOfWeek dayOfWeek = new DayOfWeek();
-        TimeSlot timeSlot = new TimeSlot();
-        TimetableEntry entry = new TimetableEntry();
+        teacher = new Teacher();
+        entry = new TimetableEntry();
 
         teacher.setTeacherId("vipuldabhi.it@ddu.ac.in");
         teacher.setName("Dr. Vipul K Dabhi");
@@ -21,18 +76,13 @@ public class loadEntries {
         teacher.setQualifications("PhD$M.E in Computer Engineering");
         teacher.setRole("Professor & Head");
         teacher.setTeachingLoad(11);
+        dbHelper.insertFaculty(teacher);
 
         // Create a DayOfWeek object
         dayOfWeek.setDayId(1);
-        dayOfWeek.setDayName("Monday");
-
         // Create a TimeSlot object
         timeSlot.setTimeSlotId(9);
-        timeSlot.setStartTime("4:30");
-        timeSlot.setEndTime("5:30");
-
         // Create a TimetableEntry object
-        entry.setEntryId(1);
         entry.setTeacherId(teacher.getTeacherId());
         entry.setTimeSlotId(timeSlot.getTimeSlotId());
         entry.setDayOfWeekId(dayOfWeek.getDayId());
@@ -40,19 +90,12 @@ public class loadEntries {
         entry.setRoom("Room no. 2");
         entry.setSemester(7);
         entry.setDivision("I");
-
         dbHelper.insertTimetableEntry(entry);
 
         dayOfWeek.setDayId(2);
-        dayOfWeek.setDayName("Tuesday");
-
         // Create a TimeSlot object
         timeSlot.setTimeSlotId(6);
-        timeSlot.setStartTime("1:30");
-        timeSlot.setEndTime("2:30");
-
         // Create a TimetableEntry object
-        entry.setEntryId(2);
         entry.setTeacherId(teacher.getTeacherId());
         entry.setTimeSlotId(timeSlot.getTimeSlotId());
         entry.setDayOfWeekId(dayOfWeek.getDayId());
@@ -60,19 +103,12 @@ public class loadEntries {
         entry.setRoom("SW4");
         entry.setSemester(7);
         entry.setDivision("H2");
-
         dbHelper.insertTimetableEntry(entry);
 
         dayOfWeek.setDayId(3);
-        dayOfWeek.setDayName("Wednesday");
-
         // Create a TimeSlot object
         timeSlot.setTimeSlotId(9);
-        timeSlot.setStartTime("4:30");
-        timeSlot.setEndTime("5:30");
-
         // Create a TimetableEntry object
-        entry.setEntryId(3);
         entry.setTeacherId(teacher.getTeacherId());
         entry.setTimeSlotId(timeSlot.getTimeSlotId());
         entry.setDayOfWeekId(dayOfWeek.getDayId());
@@ -80,19 +116,12 @@ public class loadEntries {
         entry.setRoom("Room no. 33");
         entry.setSemester(7);
         entry.setDivision("H");
-
         dbHelper.insertTimetableEntry(entry);
 
         dayOfWeek.setDayId(4);
-        dayOfWeek.setDayName("Thursday");
-
         // Create a TimeSlot object
         timeSlot.setTimeSlotId(7);
-        timeSlot.setStartTime("2:30");
-        timeSlot.setEndTime("3:30");
-
         // Create a TimetableEntry object
-        entry.setEntryId(4);
         entry.setTeacherId(teacher.getTeacherId());
         entry.setTimeSlotId(timeSlot.getTimeSlotId());
         entry.setDayOfWeekId(dayOfWeek.getDayId());
@@ -100,19 +129,12 @@ public class loadEntries {
         entry.setRoom("Room no. 2");
         entry.setSemester(7);
         entry.setDivision("I");
-
         dbHelper.insertTimetableEntry(entry);
 
         dayOfWeek.setDayId(5);
-        dayOfWeek.setDayName("Friday");
-
         // Create a TimeSlot object
         timeSlot.setTimeSlotId(3);
-        timeSlot.setStartTime("11:45");
-        timeSlot.setEndTime("12:45");
-
         // Create a TimetableEntry object
-        entry.setEntryId(5);
         entry.setTeacherId(teacher.getTeacherId());
         entry.setTimeSlotId(timeSlot.getTimeSlotId());
         entry.setDayOfWeekId(dayOfWeek.getDayId());
@@ -120,16 +142,11 @@ public class loadEntries {
         entry.setRoom("Room no. 33");
         entry.setSemester(7);
         entry.setDivision("H");
-
         dbHelper.insertTimetableEntry(entry);
 
         // Create a TimeSlot object
         timeSlot.setTimeSlotId(11);
-        timeSlot.setStartTime("1:30");
-        timeSlot.setEndTime("3:30");
-
         // Create a TimetableEntry object
-        entry.setEntryId(6);
         entry.setTeacherId(teacher.getTeacherId());
         entry.setTimeSlotId(timeSlot.getTimeSlotId());
         entry.setDayOfWeekId(dayOfWeek.getDayId());
@@ -137,19 +154,12 @@ public class loadEntries {
         entry.setRoom("SW2");
         entry.setSemester(7);
         entry.setDivision("H4");
-
         dbHelper.insertTimetableEntry(entry);
 
         dayOfWeek.setDayId(6);
-        dayOfWeek.setDayName("Saturday");
-
         // Create a TimeSlot object
         timeSlot.setTimeSlotId(10);
-        timeSlot.setStartTime("8:30");
-        timeSlot.setEndTime("11:45");
-
         // Create a TimetableEntry object
-        entry.setEntryId(7);
         entry.setTeacherId(teacher.getTeacherId());
         entry.setTimeSlotId(timeSlot.getTimeSlotId());
         entry.setDayOfWeekId(dayOfWeek.getDayId());
@@ -157,7 +167,6 @@ public class loadEntries {
         entry.setRoom("SW2");
         entry.setSemester(7);
         entry.setDivision("H1");
-
         dbHelper.insertTimetableEntry(entry);
     } // entryId : 1 to 7
 

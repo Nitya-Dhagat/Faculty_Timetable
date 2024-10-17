@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_below="@+id/textView_HomeScreen_welcome"/>
+        android:layout_below="@+id/textView_HomeScreen_welcome"
+        android:layout_above="@+id/tabLayout_homeScreen_tabs"/>
 
     <TextView
         android:id="@id/textView_HomeScreen_welcome"
@@ -36,5 +37,46 @@
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:layout_below="@id/textView_HomeScreen_welcome"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        android:paddingHorizontal="10dp"
+        android:id="@id/tabLayout_homeScreen_tabs"
+        android:layout_below="@id/textView_HomeScreen_welcome"
+        app:tabBackground="@color/primary_color_light">
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Monday"-->
+<!--            />-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Tuesday" />-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Wednesday" />-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Thrusday" />-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Friday" />-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Saturday" />-->
+    </com.google.android.material.tabs.TabLayout>
 
 </RelativeLayout>

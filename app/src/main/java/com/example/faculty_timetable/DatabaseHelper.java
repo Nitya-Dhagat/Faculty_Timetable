@@ -77,7 +77,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long insertTimeslots(TimeSlot timeslot){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues slots = new ContentValues();
-        slots.put("timeslot_Id",timeslot.getTimeSlotId());
         slots.put("start_time",timeslot.getStartTime());
         slots.put("end_time",timeslot.getEndTime());
         long newRowId = db.insert("TimeSlots",null,slots);
@@ -88,7 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long insertDay(DayOfWeek dow){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues days = new ContentValues();
-        days.put("day_id",dow.getDayId());
         days.put("day_name",dow.getDayName());
         long newRowId = db.insert("DaysOfWeek",null,days);
         db.close();
@@ -98,7 +96,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long insertTimetableEntry(TimetableEntry entry) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues faculty_values = new ContentValues();
-        faculty_values.put("entry_id",entry.getEntryId());
         faculty_values.put("teacher_id", entry.getTeacherId());
         faculty_values.put("timeslot_id",entry.getTimeSlotId());
         faculty_values.put("day_id",entry.getDayOfWeekId());
