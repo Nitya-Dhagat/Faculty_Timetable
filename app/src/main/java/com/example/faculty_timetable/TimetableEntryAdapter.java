@@ -44,8 +44,7 @@ public class TimetableEntryAdapter extends RecyclerView.Adapter<TimetableEntryVi
         holder.textViewScheduleItemDivison.setText(entry.getDivision());
         holder.textViewScheduleItemClassroom.setText(entry.getRoom());
         //holder.textViewScheduleItemTime.setText(entry.getTimeSlot().getStartTime() + "-" + entry.getTimeSlot().getEndTime());
-        holder.textViewScheduleItemTime.setText(retrieveTimeSlot(context, entry.getTimeSlotId()));
-        System.out.println("timeslot = "+retrieveTimeSlot(context, entry.getTimeSlotId())+"id = "+entry.getEntryId());
+        holder.textViewScheduleItemTime.setText(retrieveTimeSlot(context, entry.getTimeSlotId())+"");
 }
 
     @Override

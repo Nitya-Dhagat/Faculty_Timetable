@@ -11,7 +11,7 @@ public class loadEntries {
 
     public static void loadTimetableEntries(@NonNull DatabaseHelper dbHelper) {
         loadData(dbHelper);
-        loadVD(dbHelper);
+        loadHOD(dbHelper);
     }
 
     public static void loadData(DatabaseHelper dbHelper){
@@ -65,7 +65,7 @@ public class loadEntries {
         dbHelper.insertTimeslots(timeSlot);
     }
 
-    public static void loadVD(DatabaseHelper dbHelper){
+    public static void loadHOD(DatabaseHelper dbHelper){
         teacher = new Teacher();
         entry = new TimetableEntry();
 

@@ -46,9 +46,9 @@ public class retrieveDetails {
         TimeSlot timeSlot = null;
         while (cursor.moveToNext()) {
             timeSlot = new TimeSlot();
-//            timeSlot.setTimeSlotId(cursor.getInt(cursor.getColumnIndexOrThrow("timeslot_id")));
-//            timeSlot.setStartTime(cursor.getString(cursor.getColumnIndexOrThrow("start_time")));
-//            timeSlot.setEndTime(cursor.getString(cursor.getColumnIndexOrThrow("end_time")));
+            timeSlot.setTimeSlotId(cursor.getInt(cursor.getColumnIndexOrThrow("timeslot_id")));
+            timeSlot.setStartTime(cursor.getString(cursor.getColumnIndexOrThrow("start_time")));
+            timeSlot.setEndTime(cursor.getString(cursor.getColumnIndexOrThrow("end_time")));
             time = timeSlot.getStartTime()+"-" + timeSlot.getEndTime();
         }
         Log.e("timeslot",time);

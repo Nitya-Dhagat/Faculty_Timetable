@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +42,8 @@ public class HomeScreen extends AppCompatActivity {
     private TabLayout daysofweektabs;
     private TextView welcome_message;
     private String teacher_id;
+    private ViewPagerAdapter pager_adapter;
+    private ViewPager2 viewpager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,20 +63,53 @@ public class HomeScreen extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         daysofweektabs = findViewById(R.id.tabLayout_homeScreen_tabs);
         welcome_message = findViewById(R.id.textView_HomeScreen_welcome);
+        pager_adapter = new ViewPagerAdapter(this);
+        viewpager2 = findViewById(R.id.viewpager_homeScreen);
 
         // Assuming you have a way to determine the selected faculty ID
         //selectedFacultyId = "vipuldabhi.it@ddu.ac.in"; // Replace with actual faculty ID
         selectedFacultyId = sharedprefs.getString("username",mUser.getEmail());
 
         loadEntries.loadTimetableEntries(dbHelper);
-        showFacultySchedule(selectedFacultyId);
+        //showFacultySchedule(selectedFacultyId);
+        dbHelper = new DatabaseHelper(this);
+        String teacher_id=selectedFacultyId;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor1 = db.query("Teachers",null,"teacher_id=?",new String[]{String.valueOf(teacher_id)},null,null,null,null);
+        cursor1.moveToNext();
+        String name = cursor1.getString(cursor1.getColumnIndexOrThrow("name"));
+        welcome_message.setText("Welcome,\n"+name);
+        Cursor cursor2 = db.query("DaysOfWeek",null,null,null,null,null,null,null);
+        while (cursor2.moveToNext()){
+            daysofweektabs.addTab(daysofweektabs.newTab().setText(cursor2.getString(cursor2.getColumnIndexOrThrow("day_name"))));
+        }
+
+        viewpager2.setAdapter(pager_adapter);
+        daysofweektabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewpager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                daysofweektabs.getTabAt(position).select();
+            }
+        });
 
         signout = (Button) findViewById(R.id.button);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +128,7 @@ public class HomeScreen extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        String selection = "teacher_id = ?";
+        String selection = "teacher_id = ? & day_id = ?";
         String[] selectionArgs = {String.valueOf(facultyId)};
 
         Cursor cursor = db.query("TimetableEntries", null, selection, selectionArgs, null, null, null);
@@ -115,13 +151,5 @@ public class HomeScreen extends AppCompatActivity {
 
         cursor.close();
         adapter.setData(timetableEntries);
-        Cursor cursor1 = db.query("Teachers",null,"teacher_id=?",new String[]{String.valueOf(teacher_id)},null,null,null,null);
-        cursor1.moveToNext();
-        String name = cursor1.getString(cursor1.getColumnIndexOrThrow("name"));
-        welcome_message.setText("Welcome,\n"+name);
-        Cursor cursor2 = db.query("DaysOfWeek",null,null,null,null,null,null,null);
-        while (cursor2.moveToNext()){
-            daysofweektabs.addTab(daysofweektabs.newTab().setText(cursor2.getString(cursor2.getColumnIndexOrThrow("day_name"))));
-        }
     }
 }

@@ -18,8 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_below="@+id/textView_HomeScreen_welcome"
-        android:layout_above="@+id/tabLayout_homeScreen_tabs"/>
+        android:layout_alignParentEnd="@+id/textView_HomeScreen_welcome"/>
 
     <TextView
         android:id="@id/textView_HomeScreen_welcome"
@@ -29,10 +28,18 @@
         android:paddingLeft="20dp"
         android:paddingTop="45dp"
         android:text="Welcome, Nitya"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:layout_marginBottom="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_homeScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/textView_HomeScreen_welcome"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_homeScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
@@ -43,40 +50,12 @@
         android:layout_height="wrap_content"
         app:tabMode="scrollable"
         android:paddingHorizontal="10dp"
-        android:id="@id/tabLayout_homeScreen_tabs"
+        android:id="@+id/tabLayout_homeScreen_tabs"
         android:layout_below="@id/textView_HomeScreen_welcome"
-        app:tabBackground="@color/primary_color_light">
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Monday"-->
-<!--            />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Tuesday" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Wednesday" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Thrusday" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Friday" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Saturday" />-->
+        app:tabBackground="@color/secondary_color_light"
+        app:tabSelectedTextColor="@color/helper_color"
+        app:tabIndicatorColor="@color/helper_color"
+        app:tabIndicatorAnimationMode="linear">
     </com.google.android.material.tabs.TabLayout>
 
 </RelativeLayout>

@@ -17,6 +17,11 @@
         android:theme="@style/Theme.Faculty_Timetable"
         tools:targetApi="31">
         <activity
+            android:name=".faculty.sample"
+            android:exported="false"
+            android:label="@string/title_activity_sample"
+            android:theme="@style/Theme.Faculty_Timetable.NoActionBar" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>

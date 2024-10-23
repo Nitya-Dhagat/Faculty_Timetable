@@ -20,12 +20,15 @@ public class SplashScreen extends AppCompatActivity {
     LottieAnimationView lottieAnimationView;
     FirebaseAuth mAuth;
     SharedPreferences shared_prefs;
+    DatabaseHelper dbHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        dbHelper = new DatabaseHelper(this);
+        loadEntries.loadTimetableEntries(dbHelper);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
