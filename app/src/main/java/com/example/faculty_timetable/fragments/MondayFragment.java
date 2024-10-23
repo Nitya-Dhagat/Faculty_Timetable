@@ -50,6 +50,7 @@ public class MondayFragment extends Fragment {
         facultyScheduleRecyclerView.setAdapter(adapter);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        assert mUser != null;
         selectedFacultyId = sharedprefs.getString("username",mUser.getEmail());
 
         String selection = "teacher_id = ? AND day_id=?";
